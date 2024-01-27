@@ -3,10 +3,12 @@ import { signInWithRedirect } from "firebase/auth";
 import Link from "next/link";
 import { auth, googleProvider } from "../../../lib/firebase-config";
 import { useCheckUserLoggedIn } from "@/helpers/hooks";
+import { revalidatePath } from "next/cache";
 
 export const LoginOptions = () => {
   const handleGoogleLogin = async () => {
     await signInWithRedirect(auth, googleProvider);
+    revalidatePath("/", "layout");
   };
   useCheckUserLoggedIn();
 

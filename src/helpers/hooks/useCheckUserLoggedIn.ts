@@ -1,7 +1,8 @@
+"use client";
 import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { getRedirectResult } from "firebase/auth";
 import { auth } from "../../../lib/firebase-config";
-import { useRouter } from "next/navigation";
 
 export const useCheckUserLoggedIn = () => {
   const router = useRouter();
@@ -19,6 +20,7 @@ export const useCheckUserLoggedIn = () => {
       }).then((response) => {
         if (response.status === 200) {
           router.push("/dashboard");
+          router.refresh();
         }
       });
     });

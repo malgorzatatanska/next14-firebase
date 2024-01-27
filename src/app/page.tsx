@@ -1,10 +1,4 @@
-import Link from "next/link";
-import getUser from "../../lib/getUser";
-import { LoginOptions } from "@/ui/molecules";
-
 export default async function Home() {
-  const user = await getUser();
-
   return (
     <main>
       <div className="min-h-screen bg-gray-100">

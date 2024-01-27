@@ -1,9 +1,10 @@
 "use server";
 
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { auth } from "./firebase-config";
 import { adminAuth } from "./firebase-admin-config";
 import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 
 export async function handleLoginByEmail(prevState: any, data: FormData) {
   const email = data.get("email")?.toString();
@@ -55,4 +56,13 @@ export async function invalidateLogin(token: string) {
     cookies().delete("session");
     return;
   } catch (err) {}
+}
+
+export async function logOutUser() {
+  const token = cookies().get("session");
+  if (!token?.value) return;
+  await invalidateLogin(token?.value);
+  cookies().delete("session");
+  signOut(auth);
+  redirect("/login");
 }

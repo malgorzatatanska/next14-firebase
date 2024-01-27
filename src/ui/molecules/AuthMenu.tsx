@@ -1,17 +1,8 @@
-import { cookies } from "next/headers";
+"use client";
 import Link from "next/link";
-import { redirect } from "next/navigation";
-import { invalidateLogin } from "../../../lib/actions";
+import { logOutUser } from "../../../lib/actions";
 
 export const AuthMenu = () => {
-  async function logOut() {
-    "use server";
-    const token = cookies().get("session");
-    if (!token?.value) return;
-    await invalidateLogin(token?.value);
-    cookies().delete("session");
-    redirect("/login");
-  }
   return (
     <div className="flex flex-row items-center gap-2">
       <div>
@@ -23,7 +14,7 @@ export const AuthMenu = () => {
         </Link>{" "}
       </div>
       <div>
-        <form action={logOut}>
+        <form action={logOutUser}>
           <button className="bg-purple-500 text-white p-4 rounded-md hover:bg-purple-600 focus:outline-none focus:border-purple-700 focus:ring focus:ring-purple-200">
             Wyloguj
           </button>

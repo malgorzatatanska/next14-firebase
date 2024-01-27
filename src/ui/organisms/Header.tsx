@@ -3,7 +3,7 @@ import { AuthMenu, LoginOptions } from "../molecules";
 import getUser from "../../../lib/getUser";
 
 export const Header = async () => {
-  const user = await getUser();
+  const isLoggedIn = await getUser();
 
   return (
     <header className="bg-gray-200 p-4">
@@ -12,7 +12,7 @@ export const Header = async () => {
           <Link href="/">Home</Link>
         </div>
         <nav className="space-x-4">
-          {user ? <AuthMenu /> : <LoginOptions />}
+          {!isLoggedIn ? <LoginOptions /> : <AuthMenu />}
         </nav>
       </div>
     </header>
