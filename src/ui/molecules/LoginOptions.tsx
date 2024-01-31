@@ -8,24 +8,23 @@ export const LoginOptions = () => {
   const router = useRouter();
 
   const handleGoogleLogin = async () => {
-    await signInWithPopup(auth, googleProvider).then(async (user) => {
-      if (!user) return;
+    const user = await signInWithPopup(auth, googleProvider);
+    if (!user) return;
 
-      try {
-        const response = await fetch("/api/auth", {
-          method: "POST",
-          headers: {
-            Authorization: `Bearer ${await user.user.getIdToken()}`,
-          },
-        });
-        if (response.status === 200) {
-          router.push("/dashboard");
-          router.refresh();
-        }
-      } catch (error) {
-        console.error("Error checking user login:", error);
+    try {
+      const response = await fetch("/api/auth", {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${await user.user.getIdToken()}`,
+        },
+      });
+      if (response.status === 200) {
+        router.push("/dashboard");
+        router.refresh();
       }
-    });
+    } catch (error) {
+      console.error("Error checking user login:", error);
+    }
   };
 
   return (
