@@ -1,16 +1,32 @@
 "use client";
-import { signInWithRedirect } from "firebase/auth";
+import { signInWithPopup } from "firebase/auth";
 import Link from "next/link";
 import { auth, googleProvider } from "../../../lib/firebase-config";
-import { useCheckUserLoggedIn } from "@/helpers/hooks";
-import { revalidatePath } from "next/cache";
+import { useRouter } from "next/navigation";
 
 export const LoginOptions = () => {
+  const router = useRouter();
+
   const handleGoogleLogin = async () => {
-    await signInWithRedirect(auth, googleProvider);
-    revalidatePath("/", "layout");
+    await signInWithPopup(auth, googleProvider).then(async (user) => {
+      if (!user) return;
+
+      try {
+        const response = await fetch("/api/auth", {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${await user.user.getIdToken()}`,
+          },
+        });
+        if (response.status === 200) {
+          router.push("/dashboard");
+          router.refresh();
+        }
+      } catch (error) {
+        console.error("Error checking user login:", error);
+      }
+    });
   };
-  useCheckUserLoggedIn();
 
   return (
     <>
