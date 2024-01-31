@@ -50,7 +50,7 @@ export const LoginForm = () => {
               type="password"
               id="password"
               name="password"
-              className="mt-1 p-2 w-full border rounded-md"
+              className="mt-1 p-2 w-full border rounded-md text-gray-600"
             />
           </div>
 

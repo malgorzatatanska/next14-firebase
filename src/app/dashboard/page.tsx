@@ -5,7 +5,9 @@ export default async function Dashboard() {
 
   return (
     <>
-      <div>dashboarkd protected page {user?.email} </div>
+      <div className="max-w-screen-xl mx-auto text-gray-600 mt-10">
+        dashboarkd protected page {user?.email}{" "}
+      </div>
     </>
   );
 }
