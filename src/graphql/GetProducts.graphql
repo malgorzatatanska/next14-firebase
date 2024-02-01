@@ -1,0 +1,12 @@
+query GetProduct {
+  pageProductCollection(order: name_DESC) {
+    items {
+      sys {
+        id
+      }
+      name
+      price
+      description
+    }
+  }
+}
