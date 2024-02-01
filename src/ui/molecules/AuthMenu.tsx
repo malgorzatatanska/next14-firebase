@@ -4,7 +4,7 @@ import { logOutUser } from "../../../lib/actions";
 
 export const AuthMenu = () => {
   return (
-    <div className="flex flex-row items-center gap-2">
+    <>
       <div>
         <Link
           href="/dashboard"
@@ -20,6 +20,6 @@ export const AuthMenu = () => {
           </button>
         </form>
       </div>
-    </div>
+    </>
   );
 };
