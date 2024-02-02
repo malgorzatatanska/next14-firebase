@@ -1,0 +1,7 @@
+query GetProductBySlug($slug: String!) {
+  pageProductCollection(where: { slug: $slug }, limit: 1) {
+    items {
+      ...FeaturedProduct
+    }
+  }
+}

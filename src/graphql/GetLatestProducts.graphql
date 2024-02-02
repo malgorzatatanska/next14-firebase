@@ -1,0 +1,7 @@
+query GetLatestProducts {
+  pageProductCollection(limit: 3, order: sys_publishedAt_DESC) {
+    items {
+      ...FeaturedProduct
+    }
+  }
+}
