@@ -1,0 +1,17 @@
+fragment FeaturedProduct on PageProduct {
+  sys {
+    id
+    publishedAt
+  }
+  name
+  price
+  description
+  slug
+  featuredProductImage {
+    url
+    fileName
+    title
+    width
+    height
+  }
+}

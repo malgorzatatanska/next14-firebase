@@ -1,5 +1,5 @@
 "use client";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { Variants } from "framer-motion";
 import { motion, AnimatePresence } from "framer-motion";
 import classNames from "classnames";
@@ -38,7 +38,7 @@ export const MobileMenu = ({
   };
 
   const mobileMenuAppearance = classNames(
-    "fixed h-full flex flex-co w-2/6  bg-white  right-0 top-0 pt-20 justify-center overflow-y-auto shadow-mobileMenu rounded-2xl rounded-2xl",
+    "fixed h-full flex flex-co pt-10 w-2/6  bg-white  right-0 top-0  justify-center overflow-y-auto shadow-mobileMenu rounded-2xl rounded-2xl",
     {
       hidden: !isMobile,
     }
@@ -62,16 +62,16 @@ export const MobileMenu = ({
             key="menu-mobile"
           >
             <div className="">
-              <div className="flex flex-col mt-10 text-left gap-5 h-full">
+              <div className="flex flex-col  text-left gap-5 h-full">
                 <h3 className="pb-8 text-black text-base font-semibold">
                   MENU
                 </h3>{" "}
                 {isLoggedIn ? (
                   <div className="flex flex-col justify-between h-full mb-20">
-                    <AuthMenu />
+                    <AuthMenu handleToogleMenu={handleToogleMenu} />
                   </div>
                 ) : (
-                  <LoginOptions />
+                  <LoginOptions handleToogleMenu={handleToogleMenu} />
                 )}
               </div>
             </div>

@@ -14,10 +14,21 @@ import * as types from './graphql';
  * Therefore it is highly recommended to use the babel or swc plugin for production.
  */
 const documents = {
+    "query GetLatestProducts {\n  pageProductCollection(limit: 3, order: sys_publishedAt_DESC) {\n    items {\n      ...FeaturedProduct\n    }\n  }\n}": types.GetLatestProductsDocument,
+    "query GetProductBySlug($slug: String!) {\n  pageProductCollection(where: {slug: $slug}, limit: 1) {\n    items {\n      ...FeaturedProduct\n    }\n  }\n}": types.GetProductBySlugDocument,
     "query GetProduct {\n  pageProductCollection(order: name_DESC) {\n    items {\n      sys {\n        id\n      }\n      name\n      price\n      description\n    }\n  }\n}": types.GetProductDocument,
     "query GetProductsTotal {\n  pageProductCollection {\n    total\n  }\n}": types.GetProductsTotalDocument,
+    "fragment FeaturedProduct on PageProduct {\n  sys {\n    id\n    publishedAt\n  }\n  name\n  price\n  description\n  slug\n  featuredProductImage {\n    url\n    fileName\n    title\n    width\n    height\n  }\n}": types.FeaturedProductFragmentDoc,
 };
 
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "query GetLatestProducts {\n  pageProductCollection(limit: 3, order: sys_publishedAt_DESC) {\n    items {\n      ...FeaturedProduct\n    }\n  }\n}"): typeof import('./graphql').GetLatestProductsDocument;
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "query GetProductBySlug($slug: String!) {\n  pageProductCollection(where: {slug: $slug}, limit: 1) {\n    items {\n      ...FeaturedProduct\n    }\n  }\n}"): typeof import('./graphql').GetProductBySlugDocument;
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
@@ -26,6 +37,10 @@ export function graphql(source: "query GetProduct {\n  pageProductCollection(ord
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(source: "query GetProductsTotal {\n  pageProductCollection {\n    total\n  }\n}"): typeof import('./graphql').GetProductsTotalDocument;
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "fragment FeaturedProduct on PageProduct {\n  sys {\n    id\n    publishedAt\n  }\n  name\n  price\n  description\n  slug\n  featuredProductImage {\n    url\n    fileName\n    title\n    width\n    height\n  }\n}"): typeof import('./graphql').FeaturedProductFragmentDoc;
 
 
 export function graphql(source: string) {

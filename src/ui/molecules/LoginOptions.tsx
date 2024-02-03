@@ -4,10 +4,15 @@ import Link from "next/link";
 import { auth, googleProvider } from "../../../lib/firebase-config";
 import { useRouter } from "next/navigation";
 
-export const LoginOptions = () => {
+interface Props {
+  handleToogleMenu?: () => void;
+}
+
+export const LoginOptions = ({ handleToogleMenu }: Props) => {
   const router = useRouter();
 
   const handleGoogleLogin = async () => {
+    handleToogleMenu && handleToogleMenu();
     const user = await signInWithPopup(auth, googleProvider);
     if (!user) return;
 
@@ -37,11 +42,15 @@ export const LoginOptions = () => {
       </button>
       <Link
         href="/login"
+        onClick={handleToogleMenu}
         className="bg-green-500  text-center text-white p-4 rounded-md hover:bg-green-600 focus:outline-none focus:border-green-700 focus:ring focus:ring-green-200"
       >
         Email
       </Link>
-      <button className="bg-purple-500  text-center text-white p-4 rounded-md hover:bg-purple-600 focus:outline-none focus:border-purple-700 focus:ring focus:ring-purple-200">
+      <button
+        onClick={handleToogleMenu}
+        className="bg-purple-500  text-center text-white p-4 rounded-md hover:bg-purple-600 focus:outline-none focus:border-purple-700 focus:ring focus:ring-purple-200"
+      >
         Facebook
       </button>
     </>
