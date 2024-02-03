@@ -8,6 +8,7 @@ export const getLatestProducts = async () => {
   const result = await executeGraphql({
     query: GetLatestProductsDocument,
     variables: {},
+    cache: "force-cache",
   });
 
   if (!result) return null;
@@ -19,6 +20,9 @@ export const getproductBySlug = async (slug: string) => {
   const product = await executeGraphql({
     query: GetProductBySlugDocument,
     variables: { slug },
+    next: {
+      tags: ["product"],
+    },
   });
 
   if (!product) return null;

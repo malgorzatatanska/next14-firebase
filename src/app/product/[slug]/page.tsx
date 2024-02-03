@@ -1,12 +1,29 @@
 import { getproductBySlug } from "@/app/api/products";
 import Image from "next/image";
+import { cache } from "react";
+
+const getProduct = cache(async (slug: string) => {
+  return await getproductBySlug(slug);
+});
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string };
+}) {
+  let product = await getProduct(params.slug);
+  return {
+    title: product?.name,
+    description: product?.description,
+  };
+}
 
 export default async function FeaturedProducts({
   params,
 }: {
   params: { slug: string };
 }) {
-  const product = await getproductBySlug(params.slug);
+  let product = await getProduct(params.slug);
 
   return (
     <div className="text-black">

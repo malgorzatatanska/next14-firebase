@@ -2,8 +2,9 @@
 
 import { useEffect } from "react";
 import { redirect } from "next/navigation";
-import { useFormState, useFormStatus } from "react-dom";
+import { useFormState } from "react-dom";
 import { handleLoginByEmail } from "../../../lib/actions";
+import SubmitButton from "../atoms/SubmitButton";
 
 const initialState = {
   message: "",
@@ -54,12 +55,7 @@ export const LoginForm = () => {
             />
           </div>
 
-          <button
-            type="submit"
-            className="w-full bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600 focus:outline-none focus:border-blue-700 focus:ring focus:ring-blue-200"
-          >
-            Login
-          </button>
+          <SubmitButton />
         </form>
       </div>
     </div>
