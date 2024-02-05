@@ -3,7 +3,7 @@
 import { useEffect } from "react";
 import { redirect } from "next/navigation";
 import { useFormState } from "react-dom";
-import { handleLoginByEmail } from "../../../lib/actions";
+import { handleLoginByEmail } from "../../lib/actions";
 import SubmitButton from "../atoms/SubmitButton";
 
 const initialState = {

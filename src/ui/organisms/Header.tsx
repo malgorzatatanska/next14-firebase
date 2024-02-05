@@ -1,5 +1,5 @@
 import Link from "next/link";
-import getUser from "../../../lib/getUser";
+import getUser from "../../lib/getUser";
 import { HeaderContent } from "./HeaderContent";
 
 export const Header = async () => {

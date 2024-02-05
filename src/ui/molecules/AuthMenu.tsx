@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import { logOutUser } from "../../../lib/actions";
+import { logOutUser } from "../../lib/actions";
 
 interface AuthMenuProps {
   handleToogleMenu?: () => void;

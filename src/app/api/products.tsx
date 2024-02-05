@@ -9,6 +9,9 @@ export const getLatestProducts = async () => {
     query: GetLatestProductsDocument,
     variables: {},
     cache: "force-cache",
+    next: {
+      tags: ["latestProducts"],
+    },
   });
 
   if (!result) return null;

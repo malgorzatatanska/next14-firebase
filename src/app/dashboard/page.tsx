@@ -1,4 +1,4 @@
-import getUser from "../../../lib/getUser";
+import getUser from "../../lib/getUser";
 
 export default async function Dashboard() {
   const user = await getUser();

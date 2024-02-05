@@ -1,7 +1,7 @@
 "use client";
 import { signInWithPopup } from "firebase/auth";
 import Link from "next/link";
-import { auth, googleProvider } from "../../../lib/firebase-config";
+import { auth, googleProvider } from "../../lib/firebase-config";
 import { useRouter } from "next/navigation";
 
 interface Props {

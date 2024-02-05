@@ -3,10 +3,7 @@ import "server-only";
 
 import { cookies, headers } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
-import {
-  adminAuth,
-  customInitApp,
-} from "../../../../lib/firebase-admin-config";
+import { adminAuth, customInitApp } from "../../../lib/firebase-admin-config";
 
 customInitApp(); // Important otherwise you will receive no-app error
 
